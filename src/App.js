@@ -1,9 +1,10 @@
 import "./App.css";
-
+import MainPage from "./pages/main/main";
+import "./index.css";
 function App() {
   return (
     <div className="App">
-      <p>gamzadebulia</p>
+      <MainPage />
     </div>
   );
 }
