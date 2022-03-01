@@ -35,8 +35,8 @@ const MainPage = () => {
         </Box>
         <Box
           sx={{
-            width: "17%",
-            ml: "43%",
+            width: "20%",
+            ml: "42%",
             mt: "120px",
           }}
         >
@@ -50,6 +50,7 @@ const MainPage = () => {
                 },
                 borderRadius: 7,
                 fontFamily: "Montserrat",
+                fontSize: "17px",
               }}
             >
               Start Questionnaire
