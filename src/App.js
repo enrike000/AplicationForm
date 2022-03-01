@@ -1,6 +1,6 @@
 import "./index.css";
 import MainPage from "./pages/main page/main";
-import PersonalInfo from "./pages/aplication form/personalinfo";
+import PersonalInfo from "./pages/aplication form/personalinfo/personalinfo";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {

@@ -6,7 +6,9 @@
   font-family: "Montserrat";
   src: url("../public/fonts/Montserrat-Medium.ttf");
 }
-
+.Rocketman {
+  height: 270px;
+}
 reset all default style html,
 body,
 div,

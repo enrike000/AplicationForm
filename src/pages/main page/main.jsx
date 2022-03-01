@@ -4,15 +4,21 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
-
-const styles = {
-  bodyImg: {
-    backgroundImage: "./img/stars.png",
+import Stars from "./img/stars.png";
+import Rocketman from "./img/rocketman.png";
+import Image from "material-ui-image";
+const stars = {
+  paperContainer: {
+    backgroundImage: `url(${Stars})`,
   },
 };
+
 const MainPage = () => {
   return (
-    <Box style={styles.bodyImg} sx={{ bgcolor: "black" }}>
+    <Box
+      style={stars.paperContainer}
+      sx={{ bgcolor: "black", height: "100vh" }}
+    >
       <Stack direction={{ sm: "column" }}>
         <Box>
           <Typography
@@ -21,47 +27,58 @@ const MainPage = () => {
               ml: "486px",
               mt: "175px",
               color: "#FE3B1F",
+              fontFamily: "Rowdies",
             }}
           >
             Welcome Rocketeer!
           </Typography>
         </Box>
-        <Link underline="none" href="personalinfo">
-          <Button
-            variant="contained"
-            sx={{
-              ml: "41%",
-              mt: "120px",
-              bgcolor: "#FE3B1F",
-              "&:hover": {
-                background: "#FE3B1F",
-              },
-              borderRadius: 7,
-              width: "19%",
-            }}
-          >
-            Start Questionnaire
-          </Button>
-        </Link>
-        <Link href="#" underline="always">
-          <Button
-            sx={{
-              width: "16%",
-              ml: "43%",
-              mt: "15px",
-              fontSize: "15px",
-              color: "white",
-              bgcolor: "black",
-              "&:hover": {
-                background: "black",
-              },
-            }}
-            variant="text"
-          >
-            Submitted Applications
-          </Button>
-        </Link>
-        <img src="./img/rocketman.svg" alt="e" />
+        <Box
+          sx={{
+            width: "17%",
+            ml: "43%",
+            mt: "120px",
+          }}
+        >
+          <Link underline="none" href="personalinfo">
+            <Button
+              variant="contained"
+              sx={{
+                bgcolor: "#FE3B1F",
+                "&:hover": {
+                  background: "#FE3B1F",
+                },
+                borderRadius: 7,
+                fontFamily: "Montserrat",
+              }}
+            >
+              Start Questionnaire
+            </Button>
+          </Link>
+        </Box>
+
+        <Box sx={{ width: "17%", ml: "43.8%", height: "50$" }}>
+          <Link href="#" underline="always">
+            <Button
+              sx={{
+                fontFamily: "Montserrat",
+                fontSize: "12px",
+                mt: "15px",
+                color: "white",
+                bgcolor: "black",
+                "&:hover": {
+                  background: "black",
+                },
+              }}
+              variant="text"
+            >
+              Submitted Applications
+            </Button>
+          </Link>
+        </Box>
+        <Box sx={{ ml: "39%" }}>
+          <img className="Rocketman" src={Rocketman} alt="Rocketman" />
+        </Box>
       </Stack>
     </Box>
   );
