@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Rowdies";
+  src: url("../public/fonts/Rowdies-Light.ttf");
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("../public/fonts/Montserrat-Medium.ttf");
+}
+
 reset all default style html,
 body,
 div,
