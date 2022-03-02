@@ -9,9 +9,12 @@ import { useEffect, useState } from "react";
 
 const TechSkillLeft = () => {
   const [skill, setSkill] = useState([]);
+  const [chosenSkill, setChosenSkill] = useState("");
 
-  const handleChange = (event) => {
-    setSkill(event.target.value);
+  const [chosen, setChosen] = useState([]);
+
+  const handleChange = (e) => {
+    setChosenSkill(e.target.value);
   };
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
@@ -24,6 +27,10 @@ const TechSkillLeft = () => {
         console.log(data);
       });
   }, []);
+  const addItem = () => {
+    const id = chosen.length;
+    setChosen([...chosen, { skill, id }]);
+  };
   return (
     <>
       <Typography
@@ -42,9 +49,9 @@ const TechSkillLeft = () => {
       <Box sx={{ mt: "40px", ml: "140px" }}>
         <FormControl sx={{ width: "60%" }}>
           <InputLabel id="demo-simple-select-label">Skill</InputLabel>
-          <Select label="skill" onChange={handleChange}>
+          <Select label="skill" value={chosenSkill} onChange={handleChange}>
             {skill.map((e) => {
-              return <MenuItem>{e.title}</MenuItem>;
+              return <MenuItem value={skill}>{e.title}</MenuItem>;
             })}
           </Select>
         </FormControl>{" "}
@@ -68,9 +75,11 @@ const TechSkillLeft = () => {
             },
           }}
           variant="contained"
+          onClick={() => addItem()}
         >
           Add Programming Language
         </Button>
+        {}
       </Box>
     </>
   );
