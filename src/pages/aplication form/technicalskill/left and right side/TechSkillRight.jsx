@@ -23,17 +23,15 @@ const TechSkillRight = () => {
           fontSize: "21px",
         }}
       >
-        <pre>
-          As we said, Redberry has been on the field for quite
-          <br /> some time now, and we have touched and embraced
-          <br /> a varietly of programming languages, technologies,
-          <br />
-          philosophies, and frameworks. We are battle-tested
-          <br /> in PHP Laravel Stack with Vue.js, refined in React,
-          <br /> and allies with Serveside technologies like Docker
-          <br /> and Kubernetes, and now we have set foot in the <br />
-          web3 industry.
-        </pre>
+        As we said, Redberry has been on the field for quite
+        <br /> some time now, and we have touched and embraced
+        <br /> a varietly of programming languages, technologies,
+        <br />
+        philosophies, and frameworks. We are battle-tested
+        <br /> in PHP Laravel Stack with Vue.js, refined in React,
+        <br /> and allies with Serveside technologies like Docker
+        <br /> and Kubernetes, and now we have set foot in the <br />
+        web3 industry.
       </Typography>
     </>
   );

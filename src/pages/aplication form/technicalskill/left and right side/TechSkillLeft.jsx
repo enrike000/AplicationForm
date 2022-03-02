@@ -51,7 +51,7 @@ const TechSkillLeft = () => {
           <InputLabel id="demo-simple-select-label">Skill</InputLabel>
           <Select label="skill" value={chosenSkill} onChange={handleChange}>
             {skill.map((e) => {
-              return <MenuItem value={skill}>{e.title}</MenuItem>;
+              return <MenuItem value={e.id}>{e.title}</MenuItem>;
             })}
           </Select>
         </FormControl>{" "}
