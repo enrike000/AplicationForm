@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 
-const Right = () => {
+const PInfoRight = () => {
   return (
     <>
       <Typography
@@ -37,4 +37,4 @@ const Right = () => {
     </>
   );
 };
-export default Right;
+export default PInfoRight;

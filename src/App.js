@@ -1,6 +1,7 @@
 import "./index.css";
 import MainPage from "./pages/main page/main";
 import PersonalInfo from "./pages/aplication form/personalinfo/personalinfo";
+import Techskill from "./pages/aplication form/technicalskill/techskill";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<MainPage />}></Route>
           <Route path="personalinfo" element={<PersonalInfo />}></Route>
+          <Route path="TechSkill" element={<Techskill />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

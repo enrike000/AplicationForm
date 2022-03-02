@@ -1,7 +1,7 @@
 import { Box, Grid, TextField, Typography } from "@mui/material";
 import React, { useState, useRef } from "react";
 import DotsMobileStepper from "../../components/stepper";
-const Left = () => {
+const PInfoLeft = () => {
   const [firstName, setFirstName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -90,4 +90,4 @@ const Left = () => {
     </>
   );
 };
-export default Left;
+export default PInfoLeft;
