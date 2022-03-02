@@ -11,8 +11,8 @@ const TechSkillLeft = () => {
   const [skill, setSkill] = useState([]);
   const [chosenSkill, setChosenSkill] = useState("");
 
-  const [chosen, setChosen] = useState([]);
-
+  const [addElement, setAddElement] = useState([]);
+  const [experience, setExperience] = useState("");
   const handleChange = (e) => {
     setChosenSkill(e.target.value);
   };
@@ -28,8 +28,9 @@ const TechSkillLeft = () => {
       });
   }, []);
   const addItem = () => {
-    const id = chosen.length;
-    setChosen([...chosen, { skill, id }]);
+    const id = addElement.length;
+    setAddElement([...addElement, { chosenSkill, experience, id }]);
+    setExperience("");
   };
   return (
     <>
@@ -57,6 +58,7 @@ const TechSkillLeft = () => {
         </FormControl>{" "}
         <br />
         <TextField
+          onChange={(e) => setExperience(e.target.value)}
           sx={{ width: "60%", mt: "30px" }}
           id="outlined-basic"
           label="Outlined"
@@ -81,6 +83,14 @@ const TechSkillLeft = () => {
         </Button>
         {}
       </Box>
+      {addElement.map((e) => {
+        return (
+          <>
+            <p>{e.chosenSkill}</p>
+            <p>{e.experience}</p>
+          </>
+        );
+      })}
     </>
   );
 };
