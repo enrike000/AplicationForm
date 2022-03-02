@@ -86,7 +86,7 @@ const TechSkillLeft = () => {
       {addElement.map((e) => {
         return (
           <>
-            <p>{e.chosenSkill}</p>
+            <p>{chosenSkill}</p>
             <p>{e.experience}</p>
           </>
         );
