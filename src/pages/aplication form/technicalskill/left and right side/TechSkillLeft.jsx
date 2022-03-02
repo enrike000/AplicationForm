@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -8,7 +8,7 @@ import Select from "@mui/material/Select";
 import { useEffect, useState } from "react";
 
 const TechSkillLeft = () => {
-  const [skill, setSkill] = useState("Skills");
+  const [skill, setSkill] = useState([]);
 
   const handleChange = (event) => {
     setSkill(event.target.value);
@@ -18,7 +18,6 @@ const TechSkillLeft = () => {
     fetch(url)
       .then((res) => {
         return res.json();
-        console.log(res);
       })
       .then((data) => {
         setSkill(data);
@@ -40,18 +39,39 @@ const TechSkillLeft = () => {
       >
         Tell us about your skills
       </Typography>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Skill</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={skill}
-          label="Age"
-          onChange={handleChange}
+      <Box sx={{ mt: "40px", ml: "140px" }}>
+        <FormControl sx={{ width: "60%" }}>
+          <InputLabel id="demo-simple-select-label">Skill</InputLabel>
+          <Select label="skill" onChange={handleChange}>
+            {skill.map((e) => {
+              return <MenuItem>{e.title}</MenuItem>;
+            })}
+          </Select>
+        </FormControl>{" "}
+        <br />
+        <TextField
+          sx={{ width: "60%", mt: "30px" }}
+          id="outlined-basic"
+          label="Outlined"
+          variant="outlined"
+        />{" "}
+        <br />
+        <Button
+          sx={{
+            width: "240px",
+            fontSize: "7px",
+            mt: "30px",
+            ml: "120px",
+            bgcolor: "#FE3B1F",
+            "&:hover": {
+              bgcolor: "#FE3B1F",
+            },
+          }}
+          variant="contained"
         >
-          <MenuItem>e</MenuItem>
-        </Select>
-      </FormControl>
+          Add Programming Language
+        </Button>
+      </Box>
     </>
   );
 };
