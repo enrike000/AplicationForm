@@ -7,7 +7,7 @@ const PInfoRight = () => {
         variant="h2"
         sx={{
           ml: "100px",
-          mt: "50px",
+          mt: "85px",
           color: "#FE3B1F",
           fontFamily: "Rowdies",
         }}

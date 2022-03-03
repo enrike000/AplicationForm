@@ -13,9 +13,11 @@ const TechSkillLeft = () => {
 
   const [addElement, setAddElement] = useState([]);
   const [experience, setExperience] = useState("");
+
   const handleChange = (e) => {
     setChosenSkill(e.target.value);
   };
+
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
     fetch(url)
@@ -24,14 +26,15 @@ const TechSkillLeft = () => {
       })
       .then((data) => {
         setSkill(data);
-        console.log(data);
       });
   }, []);
+
   const addItem = () => {
     const id = addElement.length;
-    setAddElement([...addElement, { chosenSkill, experience, id }]);
+    setAddElement([...addElement, { experience, id }]);
     setExperience("");
   };
+  console.log(chosenSkill);
   return (
     <>
       <Typography
@@ -52,7 +55,7 @@ const TechSkillLeft = () => {
           <InputLabel id="demo-simple-select-label">Skill</InputLabel>
           <Select label="skill" value={chosenSkill} onChange={handleChange}>
             {skill.map((e) => {
-              return <MenuItem value={e.id}>{e.title}</MenuItem>;
+              return <MenuItem value={e.title}>{e.title}</MenuItem>;
             })}
           </Select>
         </FormControl>{" "}

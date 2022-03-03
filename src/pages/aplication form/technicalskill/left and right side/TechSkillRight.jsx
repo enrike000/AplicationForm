@@ -7,7 +7,7 @@ const TechSkillRight = () => {
         variant="h2"
         sx={{
           ml: "100px",
-          mt: "50px",
+          mt: "85px",
           color: "#FE3B1F",
           fontFamily: "Rowdies",
         }}
@@ -19,7 +19,7 @@ const TechSkillRight = () => {
           fontFamily: "Montserrat",
           color: "#FFFFFF",
           ml: "100px",
-          mt: "80px",
+          mt: "90px",
           fontSize: "21px",
         }}
       >
