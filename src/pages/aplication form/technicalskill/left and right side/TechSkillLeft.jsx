@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-concat */
 import { Button, TextField, Typography } from "@mui/material";
 import * as React from "react";
 import Box from "@mui/material/Box";
@@ -31,8 +32,8 @@ const TechSkillLeft = () => {
 
   const addItem = () => {
     const id = addElement.length;
-    setAddElement([...addElement, { experience, id }]);
-    setExperience("");
+    setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
+    setAddElement([...addElement, { title: chosenSkill, experience, id }]);
   };
   console.log(chosenSkill);
   return (
@@ -50,34 +51,46 @@ const TechSkillLeft = () => {
       >
         Tell us about your skills
       </Typography>
-      <Box sx={{ mt: "40px", ml: "140px" }}>
+      <Box sx={{ mt: "30px", ml: "140px" }}>
         <FormControl sx={{ width: "60%" }}>
-          <InputLabel id="demo-simple-select-label">Skill</InputLabel>
+          <InputLabel
+            sx={{ fontFamily: "Montserrat" }}
+            id="demo-simple-select-label"
+          >
+            Skill
+          </InputLabel>
           <Select label="skill" value={chosenSkill} onChange={handleChange}>
-            {skill.map((e) => {
-              return <MenuItem value={e.title}>{e.title}</MenuItem>;
-            })}
+            {skill
+              .filter((el) => !addElement.includes({ title: el.title }))
+              .map((e) => {
+                return <MenuItem value={e.title}>{e.title}</MenuItem>;
+              })}
           </Select>
         </FormControl>{" "}
         <br />
         <TextField
           onChange={(e) => setExperience(e.target.value)}
-          sx={{ width: "60%", mt: "30px" }}
+          sx={{
+            width: "60%",
+            mt: "30px",
+            fontFamily: "Montserrat",
+          }}
           id="outlined-basic"
-          label="Outlined"
+          label="Experience Duration in Years"
           variant="outlined"
         />{" "}
         <br />
         <Button
           sx={{
-            width: "240px",
-            fontSize: "7px",
+            width: "200px",
+            fontSize: "9.1px",
             mt: "30px",
-            ml: "120px",
+            ml: "160px",
             bgcolor: "#FE3B1F",
             "&:hover": {
               bgcolor: "#FE3B1F",
             },
+            fontFamily: "Montserrat",
           }}
           variant="contained"
           onClick={() => addItem()}
@@ -89,8 +102,22 @@ const TechSkillLeft = () => {
       {addElement.map((e) => {
         return (
           <>
-            <p>{chosenSkill}</p>
-            <p>{e.experience}</p>
+            <Box sx={{ mt: "10px", ml: "140px" }}>
+              <TextField
+                sx={{
+                  width: "60%",
+                  mt: "10px",
+                  fontFamily: "Montserrat",
+                  fontSize: "11px",
+                  color: "black",
+                }}
+                disabled
+                id="outlined-disabled"
+                defaultValue={
+                  e.title + "      " + "Years of Experience:" + e.experience
+                }
+              />
+            </Box>
           </>
         );
       })}
