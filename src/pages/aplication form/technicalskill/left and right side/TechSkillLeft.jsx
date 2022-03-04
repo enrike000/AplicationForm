@@ -7,6 +7,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useEffect, useState } from "react";
+import InputAdornment from "@mui/material/InputAdornment";
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { toast } from "react-toastify";
 
 const TechSkillLeft = () => {
   const [skill, setSkill] = useState([]);
@@ -14,10 +17,6 @@ const TechSkillLeft = () => {
 
   const [addElement, setAddElement] = useState([]);
   const [experience, setExperience] = useState("");
-
-  const handleChange = (e) => {
-    setChosenSkill(e.target.value);
-  };
 
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
@@ -34,8 +33,12 @@ const TechSkillLeft = () => {
     const id = addElement.length;
     setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
     setAddElement([...addElement, { title: chosenSkill, experience, id }]);
+    console.log(skill);
   };
-  console.log(chosenSkill);
+  const remove = (id) => {
+    const tmp = addElement.filter((e) => id !== e.id);
+    setAddElement(tmp);
+  };
   return (
     <>
       <Typography
@@ -59,7 +62,12 @@ const TechSkillLeft = () => {
           >
             Skill
           </InputLabel>
-          <Select label="skill" value={chosenSkill} onChange={handleChange}>
+          <Select
+            label="skill"
+            value={chosenSkill}
+            displayEmpty={true}
+            onChange={(e) => setChosenSkill(e.target.value)}
+          >
             {skill
               .filter((el) => !addElement.includes({ title: el.title }))
               .map((e) => {
@@ -77,6 +85,7 @@ const TechSkillLeft = () => {
           }}
           id="outlined-basic"
           label="Experience Duration in Years"
+          required
           variant="outlined"
         />{" "}
         <br />
@@ -113,9 +122,22 @@ const TechSkillLeft = () => {
                 }}
                 disabled
                 id="outlined-disabled"
-                defaultValue={
-                  e.title + "      " + "Years of Experience:" + e.experience
-                }
+                defaultValue={"      " + "Years of Experience:" + e.experience}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">{e.title}</InputAdornment>
+                  ),
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Button
+                        sx={{ color: "#EB3535" }}
+                        onClick={() => remove(e.id)}
+                      >
+                        <RemoveCircleOutlineIcon />
+                      </Button>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </>

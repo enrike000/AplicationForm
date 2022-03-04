@@ -1,6 +1,8 @@
-import { Box, Grid, TextField, Typography } from "@mui/material";
+/* eslint-disable no-useless-escape */
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React, { useState, useRef } from "react";
 import DotsMobileStepper from "../../components/stepper";
+
 const PInfoLeft = () => {
   const [firstName, setFirstName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -17,7 +19,6 @@ const PInfoLeft = () => {
       label: "First Name",
       inputRef: nameRef,
       autoComplete: "name",
-      inputpatern: { minLength: 2 },
       setValue: setFirstName,
       type: "text",
     },
@@ -38,15 +39,33 @@ const PInfoLeft = () => {
       type: "email",
     },
     {
-      df: "+995 5",
       value: phone,
       label: "+995 5",
       inputRef: phoneRef,
       autoComplete: "name",
+      defaultValue: "+995 5",
       setValue: setPhone,
       type: "phone",
     },
   ];
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (firstName.length < 2) {
+      alert("შეიყვანეთ მინიმუმ 2 ასო");
+    } else if (lastname.length < 2) {
+      alert("შეიყვანეთ მინიმუმ 2 ასო");
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      alert("შეიყვანეთ ვალიდური ემაილი");
+    } else {
+      console.log({
+        fistname: firstName,
+        lastname: lastname,
+        email: email,
+      });
+    }
+  };
+
   return (
     <>
       <Typography
@@ -62,7 +81,12 @@ const PInfoLeft = () => {
       >
         Hey, Rocketeer, what <br /> are your coordinates?
       </Typography>
-      <Box sx={{ ml: "140px", mb: "30px" }}>
+
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ ml: "140px", mb: "30px" }}
+      >
         {multipleInput.map((item) => {
           return (
             <Grid item sm={8}>
@@ -76,13 +100,19 @@ const PInfoLeft = () => {
                 InputLabelProps={{ style: { fontFamily: "Montserrat" } }}
                 inputRef={item.inputRef}
                 defaultValue={item.dv}
-                inputProps={item.inputpatern}
                 type={item.type}
-                required
               />
             </Grid>
           );
         })}
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, mb: 2, height: 50, fontFamily: "MarkGEO" }}
+        >
+          დარეგისტრირება
+        </Button>
       </Box>
       <Box sx={{ ml: "220px", mt: "70px" }}>
         <DotsMobileStepper />
