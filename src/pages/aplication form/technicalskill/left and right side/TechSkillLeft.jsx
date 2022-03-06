@@ -30,10 +30,16 @@ const TechSkillLeft = () => {
   }, []);
 
   const addItem = () => {
-    const id = addElement.length;
-    setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
-    setAddElement([...addElement, { title: chosenSkill, experience, id }]);
     console.log(skill);
+    if (chosenSkill === "") {
+      alert("airchiet skil");
+    } else if (experience === "") {
+      toast.error("შეიყვანეთ სახელი");
+    } else {
+      const id = addElement.length;
+      setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
+      setAddElement([...addElement, { title: chosenSkill, experience, id }]);
+    }
   };
   const remove = (id) => {
     const tmp = addElement.filter((e) => id !== e.id);

@@ -1,4 +1,4 @@
-import { Box, FormLabel, Typography } from "@mui/material";
+import { Box, Button, FormLabel, Typography } from "@mui/material";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -9,11 +9,20 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 const CInfoLeft = () => {
   const [workSpace, setWorkSpace] = React.useState("");
-  const [covid, setCovid] = React.useState("");
+  const [covidContact, setCovidContact] = React.useState("");
   const [date, setDate] = React.useState("");
   const [vaccinated, setVaccinated] = React.useState("");
-
-  console.log(date);
+  const [vaccinatedTime, setVaccinatedTime] = React.useState("");
+  if (workSpace === "") {
+    alert("Choose where you prefer to work");
+  } else if (covidContact === "") {
+    alert("Choose whether you had a touch");
+  } else if (vaccinated === "") {
+    alert("Choose whether you are vaccinated");
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
       <Typography
@@ -28,170 +37,228 @@ const CInfoLeft = () => {
       >
         Covid Stuff
       </Typography>
-
-      <Box
-        sx={{
-          mt: "60PX",
-          ml: "125px",
-        }}
-      >
-        <FormLabel
-          sx={{ color: "black", fontSize: "20px", fontFamily: "Rowdies" }}
-          id="demo-controlled-radio-buttons-group"
+      <Box component="form" onSubmit={handleSubmit}>
+        <Box
+          sx={{
+            mt: "60PX",
+            ml: "125px",
+          }}
         >
-          how would you prefer to work?
-        </FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          defaultValue="ofice"
-          value={workSpace}
-          onChange={(e) => setWorkSpace(e.target.value)}
+          <FormLabel
+            sx={{ color: "black", fontSize: "19px", fontFamily: "Rowdies" }}
+            id="demo-controlled-radio-buttons-group"
+          >
+            how would you prefer to work?
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            defaultValue="ofice"
+            value={workSpace}
+            onChange={(e) => setWorkSpace(e.target.value)}
+          >
+            <FormControlLabel
+              value="ofice"
+              control={<Radio />}
+              label={
+                <Typography
+                  sx={{
+                    fontFamily: "Montserrat",
+                    fontSize: "14px",
+                  }}
+                >
+                  From Sairme Office
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="home"
+              control={<Radio />}
+              label={
+                <Typography
+                  sx={{
+                    fontFamily: "Montserrat",
+                    fontSize: "14px",
+                    color: "black",
+                  }}
+                >
+                  Home
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="hybrid"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
+                  Hybrid
+                </Typography>
+              }
+            />
+          </RadioGroup>
+        </Box>
+        <Box
+          sx={{
+            mt: "40PX",
+            ml: "125px",
+          }}
         >
-          <FormControlLabel
-            value="ofice"
-            control={<Radio />}
-            label={
+          <FormLabel
+            sx={{ color: "#000000", fontSize: "18px", fontFamily: "Rowdies" }}
+            id="demo-controlled-radio-buttons-group"
+          >
+            Did you contact covid 19? :(
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            defaultValue="Yes"
+            value={covidContact}
+            onChange={(e) => setCovidContact(e.target.value)}
+          >
+            <FormControlLabel
+              value="Yes"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
+                  Yes
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="No"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
+                  No
+                </Typography>
+              }
+            />
+          </RadioGroup>
+        </Box>
+        {covidContact === "Yes" ? (
+          <>
+            <Box
+              sx={{
+                mt: "40PX",
+                ml: "125px",
+              }}
+            >
               <Typography
                 sx={{
-                  fontFamily: "Montserrat",
-                  fontSize: "14px",
-                }}
-              >
-                From Sairme Office
-              </Typography>
-            }
-          />
-          <FormControlLabel
-            value="home"
-            control={<Radio />}
-            label={
-              <Typography
-                sx={{
-                  fontFamily: "Montserrat",
-                  fontSize: "14px",
                   color: "black",
+                  fontSize: "18px",
+                  fontFamily: "Rowdies",
+                  mb: "20px",
                 }}
               >
-                Home
+                When?
               </Typography>
-            }
-          />
-          <FormControlLabel
-            value="hybrid"
-            control={<Radio />}
-            label={
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
-                Hybrid
-              </Typography>
-            }
-          />
-        </RadioGroup>
-      </Box>
-      <Box
-        sx={{
-          mt: "40PX",
-          ml: "125px",
-        }}
-      >
-        <FormLabel
-          sx={{ color: "#000000", fontSize: "20px", fontFamily: "Rowdies" }}
-          id="demo-controlled-radio-buttons-group"
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <DatePicker
+                  disableFuture
+                  label="Date"
+                  openTo="year"
+                  views={["year", "month", "day"]}
+                  value={date}
+                  onChange={(e) => {
+                    setDate(e);
+                  }}
+                  renderInput={(params) => (
+                    <TextField {...params} sx={{ width: "400px" }} />
+                  )}
+                />
+              </LocalizationProvider>
+            </Box>
+          </>
+        ) : (
+          <> </>
+        )}
+
+        <Box
+          sx={{
+            mt: "40PX",
+            ml: "125px",
+          }}
         >
-          Did you contact covid 19? :(
-        </FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          defaultValue="Yes"
-          value={covid}
-          onChange={(e) => setCovid(e.target.value)}
-        >
-          <FormControlLabel
-            value="Yes"
-            control={<Radio />}
-            label={
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
-                Yes
-              </Typography>
-            }
-          />
-          <FormControlLabel
-            value="No"
-            control={<Radio />}
-            label={
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
-                No
-              </Typography>
-            }
-          />
-        </RadioGroup>
-      </Box>
-      <Box
-        sx={{
-          mt: "40PX",
-          ml: "125px",
-        }}
-      >
-        <Typography
-          sx={{ color: "black", fontSize: "20px", fontFamily: "Rowdies" }}
-        >
-          When?
-        </Typography>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DatePicker
-            disableFuture
-            label="Date"
-            openTo="year"
-            views={["year", "month", "day"]}
-            value={date}
-            onChange={(e) => {
-              setDate(e);
+          <FormLabel
+            sx={{ color: "#000000", fontSize: "18px", fontFamily: "Rowdies" }}
+            id="demo-controlled-radio-buttons-group"
+          >
+            Have you been vaccinated?
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-controlled-radio-buttons-group"
+            name="controlled-radio-buttons-group"
+            defaultValue="Yes"
+            value={vaccinated}
+            onChange={(e) => setVaccinated(e.target.value)}
+          >
+            <FormControlLabel
+              value="Yes"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
+                  Yes
+                </Typography>
+              }
+            />
+            <FormControlLabel
+              value="No"
+              control={<Radio />}
+              label={
+                <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
+                  No
+                </Typography>
+              }
+            />
+          </RadioGroup>
+          <Box
+            sx={{
+              mt: "40PX",
             }}
-            renderInput={(params) => (
-              <TextField {...params} sx={{ width: "400px" }} />
+          >
+            {vaccinated === "Yes" ? (
+              <>
+                <Typography
+                  sx={{
+                    color: "black",
+                    fontSize: "18px",
+                    fontFamily: "Rowdies",
+                    mb: "20px",
+                  }}
+                >
+                  When did you get your last covid vaccine?
+                </Typography>
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    disableFuture
+                    label="Date"
+                    openTo="year"
+                    views={["year", "month", "day"]}
+                    value={vaccinatedTime}
+                    onChange={(e) => {
+                      setVaccinatedTime(e);
+                    }}
+                    renderInput={(params) => (
+                      <TextField {...params} sx={{ width: "400px" }} />
+                    )}
+                  />
+                </LocalizationProvider>
+              </>
+            ) : (
+              <p></p>
             )}
-          />
-        </LocalizationProvider>
-      </Box>
-      <Box
-        sx={{
-          mt: "40PX",
-          ml: "125px",
-        }}
-      >
-        <FormLabel
-          sx={{ color: "#000000", fontSize: "20px", fontFamily: "Rowdies" }}
-          id="demo-controlled-radio-buttons-group"
+          </Box>
+        </Box>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          sx={{ mt: 3, mb: 2, height: 50, fontFamily: "MarkGEO" }}
         >
-          Have you been vaccinated?
-        </FormLabel>
-        <RadioGroup
-          aria-labelledby="demo-controlled-radio-buttons-group"
-          name="controlled-radio-buttons-group"
-          defaultValue="Yes"
-          value={vaccinated}
-          onChange={(e) => setVaccinated(e.target.value)}
-        >
-          <FormControlLabel
-            value="Yes"
-            control={<Radio />}
-            label={
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
-                Yes
-              </Typography>
-            }
-          />
-          <FormControlLabel
-            value="No"
-            control={<Radio />}
-            label={
-              <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
-                No
-              </Typography>
-            }
-          />
-        </RadioGroup>
+          დარეგისტრირება
+        </Button>
       </Box>
     </>
   );
