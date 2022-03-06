@@ -40,10 +40,9 @@ const PInfoLeft = () => {
     },
     {
       value: phone,
-      label: "+995 5",
+      label: "+995 5XX-XX-XX-XX",
       inputRef: phoneRef,
       autoComplete: "name",
-      defaultValue: "+995 5",
       setValue: setPhone,
       type: "phone",
     },
@@ -99,7 +98,6 @@ const PInfoLeft = () => {
                 label={item.label}
                 InputLabelProps={{ style: { fontFamily: "Montserrat" } }}
                 inputRef={item.inputRef}
-                defaultValue={item.dv}
                 type={item.type}
               />
             </Grid>

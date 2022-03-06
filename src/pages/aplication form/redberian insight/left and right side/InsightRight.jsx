@@ -7,7 +7,7 @@ const InsightRight = () => {
         variant="h2"
         sx={{
           ml: "100px",
-          mt: "85px",
+          mt: "70px",
           color: "#FE3B1F",
           fontFamily: "Rowdies",
         }}

@@ -56,7 +56,7 @@ const CInfoLeft = () => {
           }}
         >
           <FormLabel
-            sx={{ color: "black", fontSize: "19px", fontFamily: "Rowdies" }}
+            sx={{ color: "black", fontSize: "19px", fontFamily: "Montserrat" }}
             id="demo-controlled-radio-buttons-group"
           >
             how would you prefer to work?
@@ -115,7 +115,11 @@ const CInfoLeft = () => {
           }}
         >
           <FormLabel
-            sx={{ color: "#000000", fontSize: "18px", fontFamily: "Rowdies" }}
+            sx={{
+              color: "#000000",
+              fontSize: "18px",
+              fontFamily: "Montserrat",
+            }}
             id="demo-controlled-radio-buttons-group"
           >
             Did you contact covid 19? :(
@@ -159,7 +163,7 @@ const CInfoLeft = () => {
                 sx={{
                   color: "black",
                   fontSize: "18px",
-                  fontFamily: "Rowdies",
+                  fontFamily: "Montserrat",
                   mb: "20px",
                 }}
               >
@@ -193,7 +197,11 @@ const CInfoLeft = () => {
           }}
         >
           <FormLabel
-            sx={{ color: "#000000", fontSize: "18px", fontFamily: "Rowdies" }}
+            sx={{
+              color: "#000000",
+              fontSize: "18px",
+              fontFamily: "Montserrat",
+            }}
             id="demo-controlled-radio-buttons-group"
           >
             Have you been vaccinated?
@@ -235,7 +243,7 @@ const CInfoLeft = () => {
                   sx={{
                     color: "black",
                     fontSize: "18px",
-                    fontFamily: "Rowdies",
+                    fontFamily: "Montserrat",
                     mb: "20px",
                   }}
                 >
