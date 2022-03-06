@@ -3,6 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 
+const token = "8cd4cbcd-cfb6-411e-8333-32751c6cd8e4";
+
 const SubmitPg = () => {
   return (
     <>

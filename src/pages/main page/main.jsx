@@ -6,7 +6,6 @@ import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
 import Stars from "./img/stars.png";
 import Rocketman from "./img/rocketman.png";
-import Image from "material-ui-image";
 const stars = {
   paperContainer: {
     backgroundImage: `url(${Stars})`,
