@@ -10,18 +10,29 @@ import DatePicker from "@mui/lab/DatePicker";
 const CInfoLeft = () => {
   const [workSpace, setWorkSpace] = React.useState("");
   const [covidContact, setCovidContact] = React.useState("");
-  const [date, setDate] = React.useState("");
+  const [contactDate, setContactDate] = React.useState("");
   const [vaccinated, setVaccinated] = React.useState("");
   const [vaccinatedTime, setVaccinatedTime] = React.useState("");
-  if (workSpace === "") {
-    alert("Choose where you prefer to work");
-  } else if (covidContact === "") {
-    alert("Choose whether you had a touch");
-  } else if (vaccinated === "") {
-    alert("Choose whether you are vaccinated");
-  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (workSpace === "") {
+      alert("Choose where you prefer to work");
+    } else if (covidContact === "") {
+      alert("Choose whether you had a touch");
+    } else if (vaccinated === "") {
+      alert("Choose whether you are vaccinated");
+    }
+    if (vaccinated === "Yes") {
+      if (vaccinatedTime === "") {
+        alert("Choose vaccinated date");
+      }
+    }
+    if (covidContact === "Yes") {
+      if (contactDate === "") {
+        alert("Choose contact date");
+      }
+    }
   };
   return (
     <>
@@ -160,9 +171,9 @@ const CInfoLeft = () => {
                   label="Date"
                   openTo="year"
                   views={["year", "month", "day"]}
-                  value={date}
+                  value={contactDate}
                   onChange={(e) => {
-                    setDate(e);
+                    setContactDate(e);
                   }}
                   renderInput={(params) => (
                     <TextField {...params} sx={{ width: "400px" }} />
