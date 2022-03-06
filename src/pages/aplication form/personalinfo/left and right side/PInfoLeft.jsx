@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import React, { useState, useRef } from "react";
-import DotsMobileStepper from "../../components/stepper";
 
 const PInfoLeft = () => {
   const [firstName, setFirstName] = useState("");
@@ -112,9 +111,7 @@ const PInfoLeft = () => {
           დარეგისტრირება
         </Button>
       </Box>
-      <Box sx={{ ml: "220px", mt: "70px" }}>
-        <DotsMobileStepper />
-      </Box>
+      <Box sx={{ ml: "220px", mt: "70px" }}></Box>
     </>
   );
 };
