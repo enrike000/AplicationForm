@@ -15,14 +15,37 @@ import CircleIcon from "@mui/icons-material/Circle";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const [firstName, setFirstName] = useState(() => {
+    const saved = localStorage.getItem("firstName");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [lastName, setLastName] = useState(() => {
+    const saved = localStorage.getItem("lastName");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [email, setEmail] = useState(() => {
+    const saved = localStorage.getItem("email");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [phone, setPhone] = useState(() => {
+    const saved = localStorage.getItem("phone");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
   const emailRef = useRef();
   const phoneRef = useRef();
   const nameRef = useRef();
   const lastNameRef = useRef();
+
+  React.useEffect(() => {
+    localStorage.setItem("firstName", JSON.stringify(firstName));
+    localStorage.setItem("lastname", JSON.stringify(lastName));
+    localStorage.setItem("phone", JSON.stringify(phone));
+    localStorage.setItem("email", JSON.stringify(email));
+  }, [firstName, lastName, phone, email]);
 
   const multipleInput = [
     {
@@ -34,11 +57,11 @@ const PInfoLeft = () => {
       type: "text",
     },
     {
-      value: lastname,
+      value: lastName,
       label: "Last Name",
       inputRef: lastNameRef,
       autoComplete: "lastname",
-      setValue: setLastname,
+      setValue: setLastName,
       type: "text",
     },
     {
@@ -62,7 +85,7 @@ const PInfoLeft = () => {
     e.preventDefault();
     if (firstName.length < 2) {
       alert("შეიყვანეთ მინიმუმ 2 ასო");
-    } else if (lastname.length < 2) {
+    } else if (lastName.length < 2) {
       alert("შეიყვანეთ მინიმუმ 2 ასო");
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       alert("შეიყვანეთ ვალიდური ემაილი");
@@ -109,19 +132,19 @@ const PInfoLeft = () => {
         <Button disabled sx={{ color: "red" }}>
           <NavigateBeforeIcon />
         </Button>
-        <IconButton size="small" onClick={""}>
+        <IconButton size="small">
           <CircleIcon sx={{ color: "#FE3B1F" }} />
         </IconButton>
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
         <Button sx={{ color: "red" }} onClick={nextpg}>
