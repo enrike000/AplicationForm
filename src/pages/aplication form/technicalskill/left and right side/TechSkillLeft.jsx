@@ -40,7 +40,6 @@ const TechSkillLeft = () => {
   }, []);
 
   const addItem = () => {
-    console.log(skill);
     if (chosenSkill === "") {
       alert("airchiet skil");
     } else if (experience === "") {
@@ -55,7 +54,6 @@ const TechSkillLeft = () => {
     const tmp = addElement.filter((e) => id !== e.id);
     setAddElement(tmp);
   };
-  console.log(addElement);
   const nextpg = () => {
     if (addElement.length === 0) {
       alert("airchiet 1 mainc ro gadaxvide");
@@ -180,16 +178,16 @@ const TechSkillLeft = () => {
         <IconButton size="small" onClick={first}>
           <CircleIcon sx={{ color: "#FE3B1F" }} />
         </IconButton>
-        <IconButton size="small" onClick={""}>
+        <IconButton size="small">
           <CircleIcon sx={{ color: "#FE3B1F" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
         <Button onClick={nextpg}>
