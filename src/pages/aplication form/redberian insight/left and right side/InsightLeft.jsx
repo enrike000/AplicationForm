@@ -1,14 +1,32 @@
-import { Box, FormLabel, TextField, Typography } from "@mui/material";
+import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-
+import { useNavigate } from "react-router-dom";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 const InsightLeft = () => {
+  const navigate = useNavigate();
+
   const [devtalks, setDevtalks] = React.useState("");
   const [aboutDevtalks, setAboutDevtalks] = React.useState("");
   const [something, setSomething] = React.useState("");
-
+  const nextpg = () => {
+    if (devtalks === "") {
+      alert("airchie yes or no");
+    } else if (devtalks === "Yes" && aboutDevtalks === "") {
+      alert("chawere devtalk");
+    } else if (something === "") {
+      alert("chawere something");
+    } else {
+      navigate("/submit");
+    }
+  };
+  const prevpg = (e) => {
+    e.preventDefault();
+    navigate("/covidpg");
+  };
   return (
     <>
       <Typography
@@ -44,7 +62,7 @@ const InsightLeft = () => {
           onChange={(e) => setDevtalks(e.target.value)}
         >
           <FormControlLabel
-            value="yes"
+            value="Yes"
             control={<Radio />}
             label={
               <Typography
@@ -74,27 +92,30 @@ const InsightLeft = () => {
           />
         </RadioGroup>
       </Box>
-      <Box
-        sx={{
-          mt: "30PX",
-          ml: "125px",
-        }}
-      >
-        <Typography
-          sx={{ color: "black", fontSize: "16px", fontFamily: "Montserrat" }}
-          id="demo-controlled-radio-buttons-group"
+      {devtalks === "Yes" ? (
+        <Box
+          sx={{
+            mt: "30PX",
+            ml: "125px",
+          }}
         >
-          What would you speak about at Devtalk?
-        </Typography>
-        <TextField
-          sx={{ fontFamily: "Montserrat", width: "400px" }}
-          placeholder="I would..."
-          multiline
-          rows={3}
-          value={aboutDevtalks}
-          onChange={(e) => setAboutDevtalks(e.target.value)}
-        />
-      </Box>
+          <Typography
+            sx={{ color: "black", fontSize: "16px", fontFamily: "Montserrat" }}
+            id="demo-controlled-radio-buttons-group"
+          >
+            What would you speak about at Devtalk?
+          </Typography>
+          <TextField
+            sx={{ fontFamily: "Montserrat", width: "400px" }}
+            placeholder="I would..."
+            multiline
+            rows={3}
+            value={aboutDevtalks}
+            onChange={(e) => setAboutDevtalks(e.target.value)}
+          />
+        </Box>
+      ) : null}
+
       <Box
         sx={{
           mt: "30PX",
@@ -119,7 +140,14 @@ const InsightLeft = () => {
           rows={1}
           value={something}
           onChange={(e) => setSomething(e.target.value)}
-        />
+        />{" "}
+        <br />
+        <Button onClick={prevpg}>
+          <NavigateBeforeIcon />
+        </Button>
+        <Button onClick={nextpg}>
+          <NavigateNextIcon />
+        </Button>
       </Box>
     </>
   );

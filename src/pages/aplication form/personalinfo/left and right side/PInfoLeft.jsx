@@ -1,8 +1,13 @@
 /* eslint-disable no-useless-escape */
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, Link, TextField, Typography } from "@mui/material";
 import React, { useState, useRef } from "react";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { useNavigate } from "react-router-dom";
 
 const PInfoLeft = () => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -46,8 +51,7 @@ const PInfoLeft = () => {
       type: "phone",
     },
   ];
-
-  const handleSubmit = (e) => {
+  const nextpg = (e) => {
     e.preventDefault();
     if (firstName.length < 2) {
       alert("შეიყვანეთ მინიმუმ 2 ასო");
@@ -56,11 +60,7 @@ const PInfoLeft = () => {
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       alert("შეიყვანეთ ვალიდური ემაილი");
     } else {
-      console.log({
-        fistname: firstName,
-        lastname: lastname,
-        email: email,
-      });
+      navigate("/TechSkill");
     }
   };
 
@@ -79,12 +79,7 @@ const PInfoLeft = () => {
       >
         Hey, Rocketeer, what <br /> are your coordinates?
       </Typography>
-
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ ml: "140px", mb: "30px" }}
-      >
+      <Box sx={{ ml: "140px", mb: "30px" }}>
         {multipleInput.map((item) => {
           return (
             <Grid item sm={8}>
@@ -102,15 +97,15 @@ const PInfoLeft = () => {
             </Grid>
           );
         })}
-        <Button
-          fullWidth
-          type="submit"
-          variant="contained"
-          sx={{ mt: 3, mb: 2, height: 50, fontFamily: "MarkGEO" }}
-        >
-          დარეგისტრირება
-        </Button>
       </Box>
+
+      <Button disabled>
+        <NavigateBeforeIcon />
+      </Button>
+
+      <Button onClick={nextpg}>
+        <NavigateNextIcon />
+      </Button>
       <Box sx={{ ml: "220px", mt: "70px" }}></Box>
     </>
   );

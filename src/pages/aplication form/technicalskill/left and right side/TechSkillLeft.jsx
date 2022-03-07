@@ -10,8 +10,13 @@ import { useEffect, useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { toast } from "react-toastify";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { useNavigate } from "react-router-dom";
 
 const TechSkillLeft = () => {
+  const navigate = useNavigate();
+
   const [skill, setSkill] = useState([]);
   const [chosenSkill, setChosenSkill] = useState("");
 
@@ -44,6 +49,17 @@ const TechSkillLeft = () => {
   const remove = (id) => {
     const tmp = addElement.filter((e) => id !== e.id);
     setAddElement(tmp);
+  };
+  console.log(addElement);
+  const nextpg = () => {
+    if (addElement.length === 0) {
+      alert("airchiet 1 mainc ro gadaxvide");
+    } else {
+      navigate("/covidpg");
+    }
+  };
+  const prevpg = () => {
+    navigate("/personalinfo");
   };
   return (
     <>
@@ -149,6 +165,14 @@ const TechSkillLeft = () => {
           </>
         );
       })}
+
+      <Button onClick={prevpg}>
+        <NavigateBeforeIcon />
+      </Button>
+
+      <Button onClick={nextpg}>
+        <NavigateNextIcon />
+      </Button>
     </>
   );
 };

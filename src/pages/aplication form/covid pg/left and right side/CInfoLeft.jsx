@@ -7,32 +7,39 @@ import TextField from "@mui/material/TextField";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import { useNavigate } from "react-router-dom";
+
 const CInfoLeft = () => {
+  const navigate = useNavigate();
+
   const [workSpace, setWorkSpace] = React.useState("");
   const [covidContact, setCovidContact] = React.useState("");
   const [contactDate, setContactDate] = React.useState("");
   const [vaccinated, setVaccinated] = React.useState("");
   const [vaccinatedTime, setVaccinatedTime] = React.useState("");
 
-  const handleSubmit = (e) => {
+  const nextpg = (e) => {
     e.preventDefault();
+
     if (workSpace === "") {
-      alert("Choose where you prefer to work");
+      alert("nnn");
     } else if (covidContact === "") {
-      alert("Choose whether you had a touch");
+      alert("nnn1");
     } else if (vaccinated === "") {
-      alert("Choose whether you are vaccinated");
+      alert("nnn2");
+    } else if (covidContact === "Yes" && contactDate === "") {
+      alert("sheiyvanet contact time");
+    } else if (vaccinated === "Yes" && vaccinatedTime === "") {
+      alert("Sheiyvanet vacinis dro");
+    } else {
+      navigate("/InsigtPg");
     }
-    if (vaccinated === "Yes") {
-      if (vaccinatedTime === "") {
-        alert("Choose vaccinated date");
-      }
-    }
-    if (covidContact === "Yes") {
-      if (contactDate === "") {
-        alert("Choose contact date");
-      }
-    }
+  };
+  const prevpg = (e) => {
+    e.preventDefault();
+    navigate("/TechSkill");
   };
   return (
     <>
@@ -48,7 +55,7 @@ const CInfoLeft = () => {
       >
         Covid Stuff
       </Typography>
-      <Box component="form" onSubmit={handleSubmit}>
+      <Box>
         <Box
           sx={{
             mt: "60PX",
@@ -270,13 +277,12 @@ const CInfoLeft = () => {
             )}
           </Box>
         </Box>
-        <Button
-          fullWidth
-          type="submit"
-          variant="contained"
-          sx={{ mt: 3, mb: 2, height: 50, fontFamily: "MarkGEO" }}
-        >
-          დარეგისტრირება
+        <Button onClick={prevpg}>
+          <NavigateBeforeIcon />
+        </Button>
+
+        <Button onClick={nextpg}>
+          <NavigateNextIcon />
         </Button>
       </Box>
     </>

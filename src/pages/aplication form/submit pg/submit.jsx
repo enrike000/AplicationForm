@@ -2,14 +2,23 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
-
-const token = "8cd4cbcd-cfb6-411e-8333-32751c6cd8e4";
+import { useNavigate } from "react-router-dom";
 
 const SubmitPg = () => {
+  const navigate = useNavigate();
+
+  const submit = () => {
+    alert("mivige");
+  };
+  const back = (e) => {
+    e.preventDefault();
+    navigate("/InsigtPg");
+  };
   return (
     <>
       <Box sx={{ bgcolor: "black", height: "100vh" }}>
         <Button
+          onClick={submit}
           variant="contained"
           sx={{
             bgcolor: "#FE3B1F",
@@ -29,6 +38,7 @@ const SubmitPg = () => {
         <br />
         <Link underline="always">
           <Button
+            onClick={back}
             sx={{
               fontFamily: "Montserrat",
               fontSize: "12px",
