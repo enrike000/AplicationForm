@@ -1,4 +1,11 @@
-import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormLabel,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -6,6 +13,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import { useNavigate } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import CircleIcon from "@mui/icons-material/Circle";
+
 const InsightLeft = () => {
   const navigate = useNavigate();
 
@@ -25,6 +34,15 @@ const InsightLeft = () => {
   };
   const prevpg = (e) => {
     e.preventDefault();
+    navigate("/covidpg");
+  };
+  const first = () => {
+    navigate("/personalinfo");
+  };
+  const second = () => {
+    navigate("/TechSkill");
+  };
+  const third = () => {
     navigate("/covidpg");
   };
   return (
@@ -142,9 +160,26 @@ const InsightLeft = () => {
           onChange={(e) => setSomething(e.target.value)}
         />{" "}
         <br />
+      </Box>
+      <Box sx={{ width: "50%", ml: "160px", mt: "40px" }}>
         <Button onClick={prevpg}>
           <NavigateBeforeIcon />
         </Button>
+        <IconButton size="small" onClick={first}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>
+        <IconButton size="small" onClick={second}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>{" "}
+        <IconButton size="small" onClick={third}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>{" "}
+        <IconButton size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
         <Button onClick={nextpg}>
           <NavigateNextIcon />
         </Button>

@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-concat */
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, IconButton, TextField, Typography } from "@mui/material";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
@@ -13,6 +13,7 @@ import { toast } from "react-toastify";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useNavigate } from "react-router-dom";
+import CircleIcon from "@mui/icons-material/Circle";
 
 const TechSkillLeft = () => {
   const navigate = useNavigate();
@@ -59,6 +60,9 @@ const TechSkillLeft = () => {
     }
   };
   const prevpg = () => {
+    navigate("/personalinfo");
+  };
+  const first = () => {
     navigate("/personalinfo");
   };
   return (
@@ -165,14 +169,29 @@ const TechSkillLeft = () => {
           </>
         );
       })}
-
-      <Button onClick={prevpg}>
-        <NavigateBeforeIcon />
-      </Button>
-
-      <Button onClick={nextpg}>
-        <NavigateNextIcon />
-      </Button>
+      <Box sx={{ width: "50%", ml: "160px", mt: "40px" }}>
+        <Button onClick={prevpg}>
+          <NavigateBeforeIcon />
+        </Button>
+        <IconButton size="small" onClick={first}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>
+        <IconButton size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <Button onClick={nextpg}>
+          <NavigateNextIcon />
+        </Button>
+      </Box>
     </>
   );
 };

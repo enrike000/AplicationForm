@@ -1,10 +1,17 @@
 /* eslint-disable no-useless-escape */
-import { Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState, useRef } from "react";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useNavigate } from "react-router-dom";
-
+import CircleIcon from "@mui/icons-material/Circle";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
@@ -98,15 +105,29 @@ const PInfoLeft = () => {
           );
         })}
       </Box>
-
-      <Button disabled>
-        <NavigateBeforeIcon />
-      </Button>
-
-      <Button onClick={nextpg}>
-        <NavigateNextIcon />
-      </Button>
-      <Box sx={{ ml: "220px", mt: "70px" }}></Box>
+      <Box sx={{ width: "50%", ml: "160px", mt: "40px" }}>
+        <Button disabled sx={{ color: "red" }}>
+          <NavigateBeforeIcon />
+        </Button>
+        <IconButton size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#FE3B1F" }} />
+        </IconButton>
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <IconButton disabled size="small" onClick={""}>
+          <CircleIcon sx={{ color: "#ed7272" }} />
+        </IconButton>{" "}
+        <Button sx={{ color: "red" }} onClick={nextpg}>
+          <NavigateNextIcon />
+        </Button>
+      </Box>
     </>
   );
 };
