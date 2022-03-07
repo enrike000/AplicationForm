@@ -18,13 +18,13 @@ import CircleIcon from "@mui/icons-material/Circle";
 const InsightLeft = () => {
   const navigate = useNavigate();
 
-  const [devtalks, setDevtalks] = React.useState("");
+  const [devtalks, setDevtalks] = React.useState(Boolean);
   const [aboutDevtalks, setAboutDevtalks] = React.useState("");
   const [something, setSomething] = React.useState("");
   const nextpg = () => {
     if (devtalks === "") {
       alert("airchie yes or no");
-    } else if (devtalks === "Yes" && aboutDevtalks === "") {
+    } else if (devtalks === true && aboutDevtalks === "") {
       alert("chawere devtalk");
     } else if (something === "") {
       alert("chawere something");
@@ -75,12 +75,11 @@ const InsightLeft = () => {
         <RadioGroup
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"
-          defaultValue="ofice"
           value={devtalks}
           onChange={(e) => setDevtalks(e.target.value)}
         >
           <FormControlLabel
-            value="Yes"
+            value={true}
             control={<Radio />}
             label={
               <Typography
@@ -94,7 +93,7 @@ const InsightLeft = () => {
             }
           />
           <FormControlLabel
-            value="no"
+            value={false}
             control={<Radio />}
             label={
               <Typography
@@ -110,7 +109,7 @@ const InsightLeft = () => {
           />
         </RadioGroup>
       </Box>
-      {devtalks === "Yes" ? (
+      {devtalks === true ? (
         <Box
           sx={{
             mt: "30PX",

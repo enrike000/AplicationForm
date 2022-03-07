@@ -42,7 +42,7 @@ const PInfoLeft = () => {
 
   React.useEffect(() => {
     localStorage.setItem("firstName", JSON.stringify(firstName));
-    localStorage.setItem("lastname", JSON.stringify(lastName));
+    localStorage.setItem("lastName", JSON.stringify(lastName));
     localStorage.setItem("phone", JSON.stringify(phone));
     localStorage.setItem("email", JSON.stringify(email));
   }, [firstName, lastName, phone, email]);

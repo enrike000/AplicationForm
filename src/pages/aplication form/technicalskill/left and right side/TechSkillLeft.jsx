@@ -24,6 +24,10 @@ const TechSkillLeft = () => {
   const [addElement, setAddElement] = useState([]);
   const [experience, setExperience] = useState("");
 
+  React.useEffect(() => {
+    localStorage.setItem("addElement", JSON.stringify(addElement));
+  }, [addElement]);
+
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
     fetch(url)
