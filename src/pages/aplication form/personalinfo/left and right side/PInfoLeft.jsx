@@ -17,18 +17,10 @@ import "react-toastify/dist/ReactToastify.css";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState(
-    JSON.parse(localStorage.getItem("PersonalInfo")).firstName ?? ""
-  );
-  const [lastName, setLastName] = useState(
-    JSON.parse(localStorage.getItem("PersonalInfo")).lastName ?? ""
-  );
-  const [email, setEmail] = useState(
-    JSON.parse(localStorage.getItem("PersonalInfo")).email ?? ""
-  );
-  const [phone, setPhone] = useState(
-    JSON.parse(localStorage.getItem("PersonalInfo")).phone ?? ""
-  );
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const emailRef = useRef();
   const phoneRef = useRef();
   const nameRef = useRef();
@@ -41,9 +33,9 @@ const PInfoLeft = () => {
   };
 
   const nextpg = (e) => {
-    if (firstName.length < 2) {
+    if (firstName.length < 2 || "") {
       toast.error("Enter at least 2 letters!(FirstName)");
-    } else if (lastName.length < 2) {
+    } else if (lastName.length < 2 || "") {
       toast.error("Enter at least 2 letters!(LastName)");
     } else if (email === "") {
       toast.error("Enter the email!");

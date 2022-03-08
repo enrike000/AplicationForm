@@ -16,11 +16,11 @@ import "react-toastify/dist/ReactToastify.css";
 const CInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [workSpace, setWorkSpace] = React.useState();
-  const [covidContact, setCovidContact] = React.useState();
-  const [contactDate, setContactDate] = React.useState();
-  const [vaccinated, setVaccinated] = React.useState();
-  const [vaccinatedTime, setVaccinatedTime] = React.useState();
+  const [workSpace, setWorkSpace] = React.useState("");
+  const [covidContact, setCovidContact] = React.useState("");
+  const [contactDate, setContactDate] = React.useState("");
+  const [vaccinated, setVaccinated] = React.useState("");
+  const [vaccinatedTime, setVaccinatedTime] = React.useState("");
 
   var covid = {
     work_preference: workSpace,

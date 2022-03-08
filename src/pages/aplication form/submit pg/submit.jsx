@@ -35,6 +35,7 @@ const SubmitPg = () => {
       .catch((err) => {
         console.log(err);
       });
+    navigate("/thankpg");
   };
 
   const back = (e) => {

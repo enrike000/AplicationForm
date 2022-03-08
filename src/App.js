@@ -7,6 +7,7 @@ import InsigtPg from "./pages/aplication form/redberian insight/Insight";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SubmitPg from "./pages/aplication form/submit pg/submit";
 import SubmitApp from "./pages/submited aplication/SubmitApp";
+import ThankPage from "./pages/aplication form/submit pg/ThankPage";
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
           <Route path="InsigtPg" element={<InsigtPg />}></Route>
           <Route path="submit" element={<SubmitPg />}></Route>
           <Route path="aplications" element={<SubmitApp />}></Route>
+          <Route path="thankpg" element={<ThankPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
