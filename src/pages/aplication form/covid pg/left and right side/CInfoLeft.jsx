@@ -20,7 +20,7 @@ const CInfoLeft = () => {
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
-  const [covidContact, setCovidContact] = React.useState(Boolean);
+  const [covidContact, setCovidContact] = React.useState("");
   const [contactDate, setContactDate] = React.useState("");
   const [vaccinated, setVaccinated] = React.useState(Boolean);
   const [vaccinatedTime, setVaccinatedTime] = React.useState("");
