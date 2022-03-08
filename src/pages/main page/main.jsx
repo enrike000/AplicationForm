@@ -58,7 +58,7 @@ const MainPage = () => {
         </Box>
 
         <Box sx={{ width: "17%", ml: "43.8%", height: "50$" }}>
-          <Link href="#" underline="always">
+          <Link href="aplications" underline="always">
             <Button
               sx={{
                 fontFamily: "Montserrat",

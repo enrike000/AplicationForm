@@ -17,22 +17,39 @@ import "react-toastify/dist/ReactToastify.css";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState();
+  // JSON.parse(localStorage.getItem("PersonalInfo")).firstName ?? ""
   const [lastName, setLastName] = useState();
+  // JSON.parse(localStorage.getItem("PersonalInfo")).lastName ?? ""
   const [email, setEmail] = useState();
+  // JSON.parse(localStorage.getItem("PersonalInfo")).email ?? ""
   const [phone, setPhone] = useState();
+  // JSON.parse(localStorage.getItem("PersonalInfo")).phone ?? ""
   const emailRef = useRef();
   const phoneRef = useRef();
   const nameRef = useRef();
   const lastNameRef = useRef();
   var PersonalInfo = {
-    firstName: firstName,
-    phone: phone,
-    email: email,
-    lastName: lastName,
+    first_name: firstName,
+    phone,
+    email,
+    last_name: lastName,
   };
 
-  localStorage.setItem("PersonalInfo", JSON.stringify(PersonalInfo));
+  const nextpg = (e) => {
+    if (firstName.length < 2) {
+      toast.error("Enter at least 2 letters!(FirstName)");
+    } else if (lastName.length < 2) {
+      toast.error("Enter at least 2 letters!(LastName)");
+    } else if (email === "") {
+      toast.error("Enter the email!");
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      toast.error("Enter a valid email!");
+    } else {
+      localStorage.setItem("PersonalInfo", JSON.stringify(PersonalInfo));
+      navigate("/TechSkill");
+    }
+  };
 
   const multipleInput = [
     {
@@ -68,20 +85,6 @@ const PInfoLeft = () => {
       type: "phone",
     },
   ];
-  const nextpg = (e) => {
-    if (firstName.length < 2) {
-      toast.error("Enter at least 2 letters!(FirstName)");
-    } else if (lastName.length < 2) {
-      toast.error("Enter at least 2 letters!(LastName)");
-    } else if (email === "") {
-      toast.error("Enter the email!");
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      toast.error("Enter a valid email!");
-    } else {
-      navigate("/TechSkill");
-    }
-  };
-
   return (
     <>
       <ToastContainer />

@@ -16,31 +16,19 @@ import "react-toastify/dist/ReactToastify.css";
 const CInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [workSpace, setWorkSpace] = React.useState(() => {
-    const saved = localStorage.getItem("workSpace");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [covidContact, setCovidContact] = React.useState(() => {
-    const saved = localStorage.getItem("covidContact");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [contactDate, setContactDate] = React.useState(() => {
-    const saved = localStorage.getItem("contactDate");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [vaccinated, setVaccinated] = React.useState(() => {
-    const saved = localStorage.getItem("vaccinated");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [vaccinatedTime, setVaccinatedTime] = React.useState(() => {
-    const saved = localStorage.getItem("vaccinatedTime");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
+  const [workSpace, setWorkSpace] = React.useState();
+  const [covidContact, setCovidContact] = React.useState();
+  const [contactDate, setContactDate] = React.useState();
+  const [vaccinated, setVaccinated] = React.useState();
+  const [vaccinatedTime, setVaccinatedTime] = React.useState();
+
+  var covid = {
+    work_preference: workSpace,
+    had_covid: covidContact,
+    had_covid_at: contactDate,
+    vaccinated: vaccinated,
+    vaccinated_at: vaccinatedTime,
+  };
 
   const nextpg = (e) => {
     e.preventDefault();
@@ -54,27 +42,12 @@ const CInfoLeft = () => {
     } else if (covidContact === "true" && contactDate === "") {
       toast.error("Enter the contact time!");
     } else if (vaccinated === "true" && vaccinatedTime === "") {
-      toast.error("Enter the vaccinated time!");
+      toast.error("Enter the contact time!");
     } else {
       navigate("/InsigtPg");
+      localStorage.setItem("covid", JSON.stringify(covid));
     }
-
-    var CovidInfo = {
-      workSpace: workSpace,
-      covidContact: covidContact,
-      contactDate: contactDate,
-      vaccinated: vaccinated,
-      vaccinatedTime: vaccinatedTime,
-    };
-
-    localStorage.setItem("CovidInfo", JSON.stringify(CovidInfo));
-
-    // Retrieve the object from storage
-    var retrievedObject = localStorage.getItem("CovidInfo");
-
-    console.log("retrievedObject: ", JSON.parse(retrievedObject));
   };
-
   const prevpg = (e) => {
     e.preventDefault();
     navigate("/TechSkill");
@@ -116,7 +89,6 @@ const CInfoLeft = () => {
           <RadioGroup
             aria-labelledby="demo-controlled-radio-buttons-group"
             name="controlled-radio-buttons-group"
-            defaultValue="ofice"
             value={workSpace}
             onChange={(e) => setWorkSpace(e.target.value)}
           >

@@ -19,27 +19,15 @@ import "react-toastify/dist/ReactToastify.css";
 const InsightLeft = () => {
   const navigate = useNavigate();
 
-  const [devtalks, setDevtalks] = React.useState(() => {
-    const saved = localStorage.getItem("devtalks");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [aboutDevtalks, setAboutDevtalks] = React.useState(() => {
-    const saved = localStorage.getItem("aboutDevtalks");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [something, setSomething] = React.useState(() => {
-    const saved = localStorage.getItem("something");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
+  const [devtalks, setDevtalks] = React.useState("");
+  const [aboutDevtalks, setAboutDevtalks] = React.useState("");
+  const [something, setSomething] = React.useState("");
 
-  React.useEffect(() => {
-    localStorage.setItem("workSpace", JSON.stringify(devtalks));
-    localStorage.setItem("covidContact", JSON.stringify(aboutDevtalks));
-    localStorage.setItem("vaccinated", JSON.stringify(something));
-  }, [devtalks, aboutDevtalks, something]);
+  var insight = {
+    will_organize_devtalk: devtalks,
+    devtalk_topic: aboutDevtalks,
+    something_special: something,
+  };
 
   const nextpg = () => {
     if (devtalks === "") {
@@ -50,6 +38,7 @@ const InsightLeft = () => {
       toast.error("The entry field should not be empty!");
     } else {
       navigate("/submit");
+      localStorage.setItem("insight", JSON.stringify(insight));
     }
   };
   const prevpg = (e) => {

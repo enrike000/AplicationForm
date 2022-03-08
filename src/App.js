@@ -6,6 +6,7 @@ import CovidPg from "./pages/aplication form/covid pg/covidpg";
 import InsigtPg from "./pages/aplication form/redberian insight/Insight";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SubmitPg from "./pages/aplication form/submit pg/submit";
+import SubmitApp from "./pages/submited aplication/SubmitApp";
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
           <Route path="covidpg" element={<CovidPg />}></Route>
           <Route path="InsigtPg" element={<InsigtPg />}></Route>
           <Route path="submit" element={<SubmitPg />}></Route>
+          <Route path="aplications" element={<SubmitApp />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

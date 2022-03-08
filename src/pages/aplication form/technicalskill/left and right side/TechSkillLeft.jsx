@@ -21,9 +21,13 @@ const TechSkillLeft = () => {
   const [skill, setSkill] = useState([]);
   const [chosenSkill, setChosenSkill] = useState("");
 
-  const [addElement, setAddElement] = useState([]);
+  const [skills, setSkills] = useState([
+    // JSON.parse(localStorage.getItem("techskill")).addElement ?? null,
+  ]);
   const [experience, setExperience] = useState("");
-
+  var techskill = {
+    skills,
+  };
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
     fetch(url)
@@ -41,26 +45,26 @@ const TechSkillLeft = () => {
     } else if (experience === "") {
       toast.error("Enter the experience!");
     } else {
-      const id = addElement.length;
       setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
-      setAddElement([...addElement, { title: chosenSkill, experience, id }]);
+      setSkills([
+        ...skills,
+        { id: skills.length + 1, value: chosenSkill, experience },
+      ]);
     }
   };
+
   const remove = (id) => {
-    const tmp = addElement.filter((e) => id !== e.id);
-    setAddElement(tmp);
+    const tmp = skills.filter((e) => id !== e.id);
+    setSkills(tmp);
   };
   const nextpg = () => {
-    if (addElement.length === 0) {
+    if (skills.length === 0) {
       toast.error("Add at least 1 skill!");
     } else {
       navigate("/covidpg");
     }
-    var TechSkills = {
-      addElement: addElement,
-    };
 
-    localStorage.setItem("TechSkills", JSON.stringify(TechSkills));
+    localStorage.setItem("techskill", JSON.stringify(techskill));
   };
   const prevpg = () => {
     navigate("/personalinfo");
@@ -100,7 +104,7 @@ const TechSkillLeft = () => {
             onChange={(e) => setChosenSkill(e.target.value)}
           >
             {skill
-              .filter((el) => !addElement.includes({ title: el.title }))
+              .filter((el) => !skills.includes({ title: el.title }))
               .map((e) => {
                 return <MenuItem value={e.title}>{e.title}</MenuItem>;
               })}
@@ -139,7 +143,7 @@ const TechSkillLeft = () => {
         </Button>
         {}
       </Box>
-      {addElement.map((e) => {
+      {skills.map((e) => {
         return (
           <>
             <Box sx={{ mt: "10px", ml: "140px" }}>
@@ -156,7 +160,7 @@ const TechSkillLeft = () => {
                 defaultValue={"      " + "Years of Experience:" + e.experience}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">{e.title}</InputAdornment>
+                    <InputAdornment position="start">{e.value}</InputAdornment>
                   ),
                   endAdornment: (
                     <InputAdornment position="end">
