@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TrendingUpRounded } from "@mui/icons-material";
 const CInfoLeft = () => {
   const navigate = useNavigate();
 
@@ -155,7 +156,7 @@ const CInfoLeft = () => {
             onChange={(e) => setCovidContact(e.target.value)}
           >
             <FormControlLabel
-              value="true"
+              value={true}
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -164,7 +165,7 @@ const CInfoLeft = () => {
               }
             />
             <FormControlLabel
-              value="false"
+              value={false}
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -234,7 +235,7 @@ const CInfoLeft = () => {
             onChange={(e) => setVaccinated(e.target.value)}
           >
             <FormControlLabel
-              value="true"
+              value={true}
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -243,7 +244,7 @@ const CInfoLeft = () => {
               }
             />
             <FormControlLabel
-              value="false"
+              value={false}
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
