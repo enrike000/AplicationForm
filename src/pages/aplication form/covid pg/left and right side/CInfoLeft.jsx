@@ -58,7 +58,23 @@ const CInfoLeft = () => {
     } else {
       navigate("/InsigtPg");
     }
+
+    var CovidInfo = {
+      workSpace: workSpace,
+      covidContact: covidContact,
+      contactDate: contactDate,
+      vaccinated: vaccinated,
+      vaccinatedTime: vaccinatedTime,
+    };
+
+    localStorage.setItem("CovidInfo", JSON.stringify(CovidInfo));
+
+    // Retrieve the object from storage
+    var retrievedObject = localStorage.getItem("CovidInfo");
+
+    console.log("retrievedObject: ", JSON.parse(retrievedObject));
   };
+
   const prevpg = (e) => {
     e.preventDefault();
     navigate("/TechSkill");

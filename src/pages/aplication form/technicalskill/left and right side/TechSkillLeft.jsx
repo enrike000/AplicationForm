@@ -24,10 +24,6 @@ const TechSkillLeft = () => {
   const [addElement, setAddElement] = useState([]);
   const [experience, setExperience] = useState("");
 
-  React.useEffect(() => {
-    localStorage.setItem("addElement", JSON.stringify(addElement));
-  }, [addElement]);
-
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
     fetch(url)
@@ -60,6 +56,11 @@ const TechSkillLeft = () => {
     } else {
       navigate("/covidpg");
     }
+    var TechSkills = {
+      addElement: addElement,
+    };
+
+    localStorage.setItem("TechSkills", JSON.stringify(TechSkills));
   };
   const prevpg = () => {
     navigate("/personalinfo");

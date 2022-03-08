@@ -17,37 +17,22 @@ import "react-toastify/dist/ReactToastify.css";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState(() => {
-    const saved = localStorage.getItem("firstName");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [lastName, setLastName] = useState(() => {
-    const saved = localStorage.getItem("lastName");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [email, setEmail] = useState(() => {
-    const saved = localStorage.getItem("email");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
-  const [phone, setPhone] = useState(() => {
-    const saved = localStorage.getItem("phone");
-    const initialValue = JSON.parse(saved);
-    return initialValue || "";
-  });
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [phone, setPhone] = useState();
   const emailRef = useRef();
   const phoneRef = useRef();
   const nameRef = useRef();
   const lastNameRef = useRef();
+  var PersonalInfo = {
+    firstName: firstName,
+    phone: phone,
+    email: email,
+    lastName: lastName,
+  };
 
-  React.useEffect(() => {
-    localStorage.setItem("firstName", JSON.stringify(firstName));
-    localStorage.setItem("lastName", JSON.stringify(lastName));
-    localStorage.setItem("phone", JSON.stringify(phone));
-    localStorage.setItem("email", JSON.stringify(email));
-  }, [firstName, lastName, phone, email]);
+  localStorage.setItem("PersonalInfo", JSON.stringify(PersonalInfo));
 
   const multipleInput = [
     {
@@ -84,7 +69,6 @@ const PInfoLeft = () => {
     },
   ];
   const nextpg = (e) => {
-    e.preventDefault();
     if (firstName.length < 2) {
       toast.error("Enter at least 2 letters!(FirstName)");
     } else if (lastName.length < 2) {
