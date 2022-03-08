@@ -17,23 +17,27 @@ import "react-toastify/dist/ReactToastify.css";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
-  const [firstName, setFirstName] = useState();
-  // JSON.parse(localStorage.getItem("PersonalInfo")).firstName ?? ""
-  const [lastName, setLastName] = useState();
-  // JSON.parse(localStorage.getItem("PersonalInfo")).lastName ?? ""
-  const [email, setEmail] = useState();
-  // JSON.parse(localStorage.getItem("PersonalInfo")).email ?? ""
-  const [phone, setPhone] = useState();
-  // JSON.parse(localStorage.getItem("PersonalInfo")).phone ?? ""
+  const [firstName, setFirstName] = useState(
+    JSON.parse(localStorage.getItem("PersonalInfo")).firstName ?? ""
+  );
+  const [lastName, setLastName] = useState(
+    JSON.parse(localStorage.getItem("PersonalInfo")).lastName ?? ""
+  );
+  const [email, setEmail] = useState(
+    JSON.parse(localStorage.getItem("PersonalInfo")).email ?? ""
+  );
+  const [phone, setPhone] = useState(
+    JSON.parse(localStorage.getItem("PersonalInfo")).phone ?? ""
+  );
   const emailRef = useRef();
   const phoneRef = useRef();
   const nameRef = useRef();
   const lastNameRef = useRef();
   var PersonalInfo = {
-    first_name: firstName,
+    firstName,
     phone,
     email,
-    last_name: lastName,
+    lastName,
   };
 
   const nextpg = (e) => {

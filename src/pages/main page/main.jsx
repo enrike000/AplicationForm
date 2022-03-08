@@ -11,7 +11,9 @@ const stars = {
     backgroundImage: `url(${Stars})`,
   },
 };
-
+const Clear = () => {
+  localStorage.clear();
+};
 const MainPage = () => {
   return (
     <Box
@@ -41,6 +43,7 @@ const MainPage = () => {
         >
           <Link underline="none" href="personalinfo">
             <Button
+              onClick={Clear}
               variant="contained"
               sx={{
                 bgcolor: "#FE3B1F",
