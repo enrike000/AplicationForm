@@ -14,20 +14,40 @@ import { useNavigate } from "react-router-dom";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import CircleIcon from "@mui/icons-material/Circle";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const InsightLeft = () => {
   const navigate = useNavigate();
 
-  const [devtalks, setDevtalks] = React.useState(Boolean);
-  const [aboutDevtalks, setAboutDevtalks] = React.useState("");
-  const [something, setSomething] = React.useState("");
+  const [devtalks, setDevtalks] = React.useState(() => {
+    const saved = localStorage.getItem("devtalks");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [aboutDevtalks, setAboutDevtalks] = React.useState(() => {
+    const saved = localStorage.getItem("aboutDevtalks");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [something, setSomething] = React.useState(() => {
+    const saved = localStorage.getItem("something");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem("workSpace", JSON.stringify(devtalks));
+    localStorage.setItem("covidContact", JSON.stringify(aboutDevtalks));
+    localStorage.setItem("vaccinated", JSON.stringify(something));
+  }, [devtalks, aboutDevtalks, something]);
+
   const nextpg = () => {
     if (devtalks === "") {
-      alert("airchie yes or no");
+      toast.error("Choose whether or not to attend Devtalks");
     } else if (devtalks === true && aboutDevtalks === "") {
-      alert("chawere devtalk");
+      toast.error("The entry field should not be empty!");
     } else if (something === "") {
-      alert("chawere something");
+      toast.error("The entry field should not be empty!");
     } else {
       navigate("/submit");
     }
@@ -47,6 +67,7 @@ const InsightLeft = () => {
   };
   return (
     <>
+      <ToastContainer />
       <Typography
         sx={{
           color: "#FE3B1F",

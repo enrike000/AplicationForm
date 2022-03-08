@@ -11,7 +11,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CInfoLeft = () => {
   const navigate = useNavigate();
 
@@ -20,32 +21,40 @@ const CInfoLeft = () => {
     const initialValue = JSON.parse(saved);
     return initialValue || "";
   });
-  const [covidContact, setCovidContact] = React.useState("");
-  const [contactDate, setContactDate] = React.useState("");
-  const [vaccinated, setVaccinated] = React.useState(Boolean);
-  const [vaccinatedTime, setVaccinatedTime] = React.useState("");
-
-  React.useEffect(() => {
-    localStorage.setItem("workSpace", JSON.stringify(workSpace));
-    localStorage.setItem("covidContact", JSON.stringify(covidContact));
-    localStorage.setItem("vaccinated", JSON.stringify(vaccinated));
-    localStorage.setItem("contactDate", JSON.stringify(contactDate));
-    localStorage.setItem("vaccinatedTime", JSON.stringify(vaccinatedTime));
-  }, [workSpace, covidContact, vaccinated, contactDate, vaccinatedTime]);
+  const [covidContact, setCovidContact] = React.useState(() => {
+    const saved = localStorage.getItem("covidContact");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [contactDate, setContactDate] = React.useState(() => {
+    const saved = localStorage.getItem("contactDate");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [vaccinated, setVaccinated] = React.useState(() => {
+    const saved = localStorage.getItem("vaccinated");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
+  const [vaccinatedTime, setVaccinatedTime] = React.useState(() => {
+    const saved = localStorage.getItem("vaccinatedTime");
+    const initialValue = JSON.parse(saved);
+    return initialValue || "";
+  });
 
   const nextpg = (e) => {
     e.preventDefault();
 
     if (workSpace === "") {
-      alert("nnn");
+      toast.error("Choose how would you prefer to work!");
     } else if (covidContact === "") {
-      alert("nnn1");
+      toast.error("Choose whether you had a contact Covid19!");
     } else if (vaccinated === "") {
-      alert("nnn2");
+      toast.error("Choose whether you are vaccinated");
     } else if (covidContact === "true" && contactDate === "") {
-      alert("sheiyvanet contact time");
+      toast.error("Enter the contact time!");
     } else if (vaccinated === "true" && vaccinatedTime === "") {
-      alert("Sheiyvanet vacinis dro");
+      toast.error("Enter the vaccinated time!");
     } else {
       navigate("/InsigtPg");
     }
@@ -62,6 +71,7 @@ const CInfoLeft = () => {
   };
   return (
     <>
+      <ToastContainer />
       <Typography
         sx={{
           color: "#FE3B1F",

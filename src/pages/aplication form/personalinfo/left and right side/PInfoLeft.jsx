@@ -12,6 +12,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const PInfoLeft = () => {
   const navigate = useNavigate();
 
@@ -84,11 +86,13 @@ const PInfoLeft = () => {
   const nextpg = (e) => {
     e.preventDefault();
     if (firstName.length < 2) {
-      alert("შეიყვანეთ მინიმუმ 2 ასო");
+      toast.error("Enter at least 2 letters!(FirstName)");
     } else if (lastName.length < 2) {
-      alert("შეიყვანეთ მინიმუმ 2 ასო");
+      toast.error("Enter at least 2 letters!(LastName)");
+    } else if (email === "") {
+      toast.error("Enter the email!");
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      alert("შეიყვანეთ ვალიდური ემაილი");
+      toast.error("Enter a valid email!");
     } else {
       navigate("/TechSkill");
     }
@@ -96,6 +100,7 @@ const PInfoLeft = () => {
 
   return (
     <>
+      <ToastContainer />
       <Typography
         sx={{
           color: "#FE3B1F",

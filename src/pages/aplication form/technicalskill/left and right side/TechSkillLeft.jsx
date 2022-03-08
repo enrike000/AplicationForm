@@ -9,12 +9,12 @@ import Select from "@mui/material/Select";
 import { useEffect, useState } from "react";
 import InputAdornment from "@mui/material/InputAdornment";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
-import { toast } from "react-toastify";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const TechSkillLeft = () => {
   const navigate = useNavigate();
 
@@ -41,9 +41,9 @@ const TechSkillLeft = () => {
 
   const addItem = () => {
     if (chosenSkill === "") {
-      alert("airchiet skil");
+      toast.error("Select Skill");
     } else if (experience === "") {
-      toast.error("შეიყვანეთ სახელი");
+      toast.error("Enter the experience!");
     } else {
       const id = addElement.length;
       setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
@@ -56,7 +56,7 @@ const TechSkillLeft = () => {
   };
   const nextpg = () => {
     if (addElement.length === 0) {
-      alert("airchiet 1 mainc ro gadaxvide");
+      toast.error("Add at least 1 skill!");
     } else {
       navigate("/covidpg");
     }
@@ -69,6 +69,8 @@ const TechSkillLeft = () => {
   };
   return (
     <>
+      <ToastContainer />
+
       <Typography
         sx={{
           color: "#FE3B1F",
