@@ -79,7 +79,7 @@ const InsightLeft = () => {
           onChange={(e) => setDevtalks(e.target.value)}
         >
           <FormControlLabel
-            value={true}
+            value="true"
             control={<Radio />}
             label={
               <Typography
@@ -93,7 +93,7 @@ const InsightLeft = () => {
             }
           />
           <FormControlLabel
-            value={false}
+            value="false"
             control={<Radio />}
             label={
               <Typography
@@ -109,7 +109,7 @@ const InsightLeft = () => {
           />
         </RadioGroup>
       </Box>
-      {devtalks === true ? (
+      {devtalks === "true" ? (
         <Box
           sx={{
             mt: "30PX",

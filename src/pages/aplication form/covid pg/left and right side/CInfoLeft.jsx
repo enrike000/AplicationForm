@@ -42,9 +42,9 @@ const CInfoLeft = () => {
       alert("nnn1");
     } else if (vaccinated === "") {
       alert("nnn2");
-    } else if (covidContact === true && contactDate === "") {
+    } else if (covidContact === "true" && contactDate === "") {
       alert("sheiyvanet contact time");
-    } else if (vaccinated === true && vaccinatedTime === "") {
+    } else if (vaccinated === "true" && vaccinatedTime === "") {
       alert("Sheiyvanet vacinis dro");
     } else {
       navigate("/InsigtPg");
@@ -157,7 +157,7 @@ const CInfoLeft = () => {
             onChange={(e) => setCovidContact(e.target.value)}
           >
             <FormControlLabel
-              value={true}
+              value="true"
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -166,7 +166,7 @@ const CInfoLeft = () => {
               }
             />
             <FormControlLabel
-              value={false}
+              value="false"
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -176,7 +176,7 @@ const CInfoLeft = () => {
             />
           </RadioGroup>
         </Box>
-        {covidContact === true ? (
+        {covidContact === "true" ? (
           <>
             <Box
               sx={{
@@ -236,7 +236,7 @@ const CInfoLeft = () => {
             onChange={(e) => setVaccinated(e.target.value)}
           >
             <FormControlLabel
-              value={true}
+              value="true"
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -245,7 +245,7 @@ const CInfoLeft = () => {
               }
             />
             <FormControlLabel
-              value={false}
+              value="false"
               control={<Radio />}
               label={
                 <Typography sx={{ fontFamily: "Montserrat", fontSize: "14px" }}>
@@ -259,7 +259,7 @@ const CInfoLeft = () => {
               mt: "40PX",
             }}
           >
-            {vaccinated === true ? (
+            {vaccinated === "true" ? (
               <>
                 <Typography
                   sx={{
@@ -301,13 +301,13 @@ const CInfoLeft = () => {
         <IconButton size="small" onClick={second}>
           <CircleIcon sx={{ color: "#FE3B1F" }} />
         </IconButton>{" "}
-        <IconButton size="small" onClick={""}>
+        <IconButton size="small">
           <CircleIcon sx={{ color: "#FE3B1F" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
-        <IconButton disabled size="small" onClick={""}>
+        <IconButton disabled size="small">
           <CircleIcon sx={{ color: "#ed7272" }} />
         </IconButton>{" "}
         <Button onClick={nextpg}>
