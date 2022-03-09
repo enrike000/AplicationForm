@@ -23,9 +23,11 @@ const TechSkillLeft = () => {
 
   const [skills, setSkills] = useState([]);
   const [experience, setExperience] = useState("");
+
   var techskill = {
     skills,
   };
+  console.log(chosenSkill);
   const url = "https://bootcamp-2022.devtest.ge/api/skills";
   useEffect(() => {
     fetch(url)
@@ -44,10 +46,7 @@ const TechSkillLeft = () => {
       toast.error("Enter the experience!");
     } else {
       setSkill((prev) => prev.filter((el) => el.title !== chosenSkill));
-      setSkills([
-        ...skills,
-        { id: skills.length + 1, value: chosenSkill, experience },
-      ]);
+      setSkills([...skills, { id: chosenSkill, experience }]);
     }
   };
 
@@ -104,7 +103,7 @@ const TechSkillLeft = () => {
             {skill
               .filter((el) => !skills.includes({ title: el.title }))
               .map((e) => {
-                return <MenuItem value={e.title}>{e.title}</MenuItem>;
+                return <MenuItem value={e.id}>{e.title}</MenuItem>;
               })}
           </Select>
         </FormControl>{" "}
@@ -158,7 +157,7 @@ const TechSkillLeft = () => {
                 defaultValue={"      " + "Years of Experience:" + e.experience}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">{e.value}</InputAdornment>
+                    <InputAdornment position="start">{e.id}</InputAdornment>
                   ),
                   endAdornment: (
                     <InputAdornment position="end">

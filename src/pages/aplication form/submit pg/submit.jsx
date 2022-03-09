@@ -28,7 +28,7 @@ const SubmitPg = () => {
     covidcontact = false;
   }
   const data = {
-    token: "045e1060-a548-4dc1-8aae-28da842372cb",
+    token: "75432f6e-fdb5-4820-b1f1-0c7ce6db6f91",
     first_name: JSON.parse(localStorage.getItem("PersonalInfo")).lastName,
     last_name: JSON.parse(localStorage.getItem("PersonalInfo")).firstName,
     email: JSON.parse(localStorage.getItem("PersonalInfo")).email,
@@ -48,10 +48,7 @@ const SubmitPg = () => {
   const submit = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "https://bootcamp-2022.devtest.ge/api/application?token=045e1060-a548-4dc1-8aae-28da842372cb",
-        data
-      )
+      .post("https://bootcamp-2022.devtest.ge/api/application", data)
 
       .then((res) => console.log(res))
       .catch((err) => {
