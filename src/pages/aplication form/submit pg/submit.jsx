@@ -7,108 +7,56 @@ import axios from "axios";
 
 const SubmitPg = () => {
   const navigate = useNavigate();
-  // React.useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       await axios.get(
-  //         "https://bootcamp-2022.devtest.ge/api/applications?token=0a2a89b7-6b9e-493a-81d0-7291de4c82fe",
-  //         {
-  //           first_name: JSON.parse(localStorage.getItem("PersonalInfo"))
-  //             .first_name,
-  //           last_name: JSON.parse(localStorage.getItem("PersonalInfo"))
-  //             .last_name,
-  //           email: JSON.parse(localStorage.getItem("PersonalInfo")).email,
-  //           phone: JSON.parse(localStorage.getItem("PersonalInfo")).phone,
-  //           skills: JSON.parse(localStorage.getItem("techskill")).skills,
-  //           work_preference: JSON.parse(localStorage.getItem("covid"))
-  //             .work_preference,
-  //           had_covid: JSON.parse(localStorage.getItem("covid")).had_covid,
-  //           had_covid_at: JSON.parse(localStorage.getItem("covid"))
-  //             .had_covid_at,
-  //           vaccinated: JSON.parse(localStorage.getItem("covid")).vaccinated,
-  //           vaccinated_at: JSON.parse(localStorage.getItem("covid"))
-  //             .vaccinated_at,
-  //           will_organize_devtalk: JSON.parse(localStorage.getItem("insight"))
-  //             .will_organize_devtalk,
-  //           devtalk_topic: JSON.parse(localStorage.getItem("insight"))
-  //             .devtalk_topic,
-  //           something_special: JSON.parse(localStorage.getItem("insight"))
-  //             .something_special,
-  //         }
-  //       );
-  //     } catch (err) {
-  //       console.log({ message: err.message });
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-  (async () => {
-    const rawResponse = await fetch(
-      "https://bootcamp-2022.devtest.ge/api/application?token=0a2a89b7-6b9e-493a-81d0-7291de4c82fe",
-      {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: {
-          first_name: JSON.parse(localStorage.getItem("PersonalInfo"))
-            .first_name,
-          last_name: JSON.parse(localStorage.getItem("PersonalInfo")).last_name,
-          email: JSON.parse(localStorage.getItem("PersonalInfo")).email,
-          phone: JSON.parse(localStorage.getItem("PersonalInfo")).phone,
-          skills: JSON.parse(localStorage.getItem("techskill")).skills,
-          work_preference: JSON.parse(localStorage.getItem("covid"))
-            .work_preference,
-          had_covid: JSON.parse(localStorage.getItem("covid")).had_covid,
-          had_covid_at: JSON.parse(localStorage.getItem("covid")).had_covid_at,
-          vaccinated: JSON.parse(localStorage.getItem("covid")).vaccinated,
-          vaccinated_at: JSON.parse(localStorage.getItem("covid"))
-            .vaccinated_at,
-          will_organize_devtalk: JSON.parse(localStorage.getItem("insight"))
-            .will_organize_devtalk,
-          devtalk_topic: JSON.parse(localStorage.getItem("insight"))
-            .devtalk_topic,
-          something_special: JSON.parse(localStorage.getItem("insight"))
-            .something_special,
-        },
-      }
-    );
-    const content = await rawResponse.json();
+  var Vacinated = JSON.parse(localStorage.getItem("covid")).vaccinated;
+  if (Vacinated === "true") {
+    Vacinated = true;
+  } else {
+    Vacinated = false;
+  }
+  var will_organize_devtalk = JSON.parse(
+    localStorage.getItem("insight")
+  ).will_organize_devtalk;
+  if (will_organize_devtalk === "true") {
+    will_organize_devtalk = true;
+  } else {
+    will_organize_devtalk = false;
+  }
+  var covidcontact = JSON.parse(localStorage.getItem("covid")).had_covid;
+  if (covidcontact === "true") {
+    covidcontact = true;
+  } else {
+    covidcontact = false;
+  }
+  const data = {
+    token: "045e1060-a548-4dc1-8aae-28da842372cb",
+    first_name: JSON.parse(localStorage.getItem("PersonalInfo")).lastName,
+    last_name: JSON.parse(localStorage.getItem("PersonalInfo")).firstName,
+    email: JSON.parse(localStorage.getItem("PersonalInfo")).email,
+    phone: JSON.parse(localStorage.getItem("PersonalInfo")).phone,
+    skills: JSON.parse(localStorage.getItem("techskill")).skills,
+    work_preference: JSON.parse(localStorage.getItem("covid")).work_preference,
 
-    console.log(content);
-  })();
+    had_covid: covidcontact,
+    had_covid_at: JSON.parse(localStorage.getItem("covid")).had_covid_at,
+    vaccinated: Vacinated,
+    vaccinated_at: JSON.parse(localStorage.getItem("covid")).vaccinated_at,
+    will_organize_devtalk: will_organize_devtalk,
+    devtalk_topic: JSON.parse(localStorage.getItem("insight")).devtalk_topic,
+    something_special: JSON.parse(localStorage.getItem("insight"))
+      .something_special,
+  };
   const submit = (e) => {
     e.preventDefault();
-    // axios
-    //   .post(
-    //     "https://bootcamp-2022.devtest.ge/api/application?token=0a2a89b7-6b9e-493a-81d0-7291de4c82fe",
-    //     {
-    //       first_name: JSON.parse(localStorage.getItem("PersonalInfo"))
-    //         .first_name,
-    //       last_name: JSON.parse(localStorage.getItem("PersonalInfo")).last_name,
-    //       email: JSON.parse(localStorage.getItem("PersonalInfo")).email,
-    //       phone: JSON.parse(localStorage.getItem("PersonalInfo")).phone,
-    //       skills: JSON.parse(localStorage.getItem("techskill")).skills,
-    //       work_preference: JSON.parse(localStorage.getItem("covid"))
-    //         .work_preference,
-    //       had_covid: JSON.parse(localStorage.getItem("covid")).had_covid,
-    //       had_covid_at: JSON.parse(localStorage.getItem("covid")).had_covid_at,
-    //       vaccinated: JSON.parse(localStorage.getItem("covid")).vaccinated,
-    //       vaccinated_at: JSON.parse(localStorage.getItem("covid"))
-    //         .vaccinated_at,
-    //       will_organize_devtalk: JSON.parse(localStorage.getItem("insight"))
-    //         .will_organize_devtalk,
-    //       devtalk_topic: JSON.parse(localStorage.getItem("insight"))
-    //         .devtalk_topic,
-    //       something_special: JSON.parse(localStorage.getItem("insight"))
-    //         .something_special,
-    //     }
-    //   )
-    //   .then((res) => console.log(res))
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .post(
+        "https://bootcamp-2022.devtest.ge/api/application?token=045e1060-a548-4dc1-8aae-28da842372cb",
+        data
+      )
+
+      .then((res) => console.log(res))
+      .catch((err) => {
+        console.log(err);
+      });
     navigate("/thankpg");
   };
 

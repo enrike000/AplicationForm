@@ -27,9 +27,9 @@ const PInfoLeft = () => {
   const lastNameRef = useRef();
   var PersonalInfo = {
     firstName,
+    lastName,
     phone,
     email,
-    lastName,
   };
 
   const nextpg = (e) => {

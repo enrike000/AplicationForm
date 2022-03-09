@@ -21,9 +21,7 @@ const TechSkillLeft = () => {
   const [skill, setSkill] = useState([]);
   const [chosenSkill, setChosenSkill] = useState("");
 
-  const [skills, setSkills] = useState([
-    // JSON.parse(localStorage.getItem("techskill")).addElement ?? null,
-  ]);
+  const [skills, setSkills] = useState([]);
   const [experience, setExperience] = useState("");
   var techskill = {
     skills,
