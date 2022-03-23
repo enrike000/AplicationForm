@@ -1,20 +1,7 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  FormControlLabel,
-  Grid,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import axios from "axios";
 import * as React from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { DatePicker, LocalizationProvider } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import Acordion from "./Acordion";
 const SubmitApp = () => {
   const [postinfo, setPostinfo] = React.useState("");
@@ -49,6 +36,7 @@ const SubmitApp = () => {
             Submitted Applications
           </Typography>
           {postinfo && postinfo.map((e) => <Acordion key={e.id} object={e} />)}
+          <Typography>Go back</Typography>
         </Box>
       </Box>
     </>
